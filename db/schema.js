@@ -30,22 +30,12 @@ const regSchema=new mongoose.Schema({
 
 })
 
-const userSchema= new mongoose.Schema({
-  username:{
-    type:String,
-    unique:true,
-    required:true
-  },
-  password:{
-    type:String,
-    required:true
-  }
-})
 
 
-const User = new mongoose.model("User",userSchema);
+
+
 const Register = new mongoose.model("Register",regSchema);
 
 
-module.exports = User;
+
 module.exports = Register;
