@@ -11,6 +11,7 @@ const cookieParser = require('cookie-parser');
 const auth = require('./middleware/auth');
 const alert = require('alert');
 
+
 console.log(process.env.JWT_SECRET)
 const port = process.env.PORT || 3000;
 
@@ -44,11 +45,18 @@ app.get('/private',auth,(req,res)=>{
   res.render("private")
 })
 
-app.get('/logout',auth,(req,res)=>{
+app.get('/logout',auth,async(req,res)=>{
   try {
     res.clearCookie('jwt');
     // res.send("LOGOUT SUCCESSFULL")
 
+    //
+    req.user.tokens = req.user.tokens.filter((element)=>{
+        return element.token !== req.token;
+    })
+    console.log(req.user.tokens)
+    await req.user.save();
+    //
     res.render("login")
     alert("Logout Successful")
   } catch (e) {
