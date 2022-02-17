@@ -22,8 +22,8 @@ console.log(verify.id)
     next();
   } catch (e) {
     console.log("CANNOT AUTHORIZE YOU")
-    res.render("login")
-    alert("You Need To Login First")
+    res.redirect('/login')
+
   }
 
 }

@@ -57,7 +57,8 @@ app.get('/logout',auth,async(req,res)=>{
     console.log(req.user.tokens)
     await req.user.save();
     //
-    res.render("login")
+    res.redirect('/login')
+    // res.render("login")
     alert("Logout Successful")
   } catch (e) {
     res.status(500).send(e)
